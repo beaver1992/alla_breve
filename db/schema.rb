@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170929140936) do
+ActiveRecord::Schema.define(version: 20171015222134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "redactor_images", force: :cascade do |t|
+    t.string "image_data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "first_name"
@@ -34,6 +40,19 @@ ActiveRecord::Schema.define(version: 20170929140936) do
     t.integer "sign_in_count"
     t.string "current_sign_in_ip"
     t.string "auth_token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "writings", force: :cascade do |t|
+    t.string "name"
+    t.text "annotation"
+    t.boolean "active", default: false, null: false
+    t.date "published_date"
+    t.string "slug"
+    t.text "body"
+    t.string "type"
+    t.text "preview_data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

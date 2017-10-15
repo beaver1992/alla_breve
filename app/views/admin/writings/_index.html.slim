@@ -1,0 +1,22 @@
+- if @writings.present?
+  table.table.table-hover
+    thead
+      tr
+        th Фото
+        th Заголовок
+        th Дата публикации
+        th Активна?
+        th
+    tbody
+      - @writings.each do |w|
+        tr
+          td
+            img src="#{w.preview_url}" alt="#{w.name}" style="max-width: 100px"
+          td #{w.name}
+          td #{w.published_date.strftime('%d-%m-%Y')}
+          td #{w.active ? 'Да' : 'Нет'}
+          td
+            = link_to 'Р', edit_admin_article_path(w)
+            = link_to 'Д', admin_article_path(w), method: :delete, data: { confirm: 'Вы уверены?' }
+- else
+  p Записей нет
