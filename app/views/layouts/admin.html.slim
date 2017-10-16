@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+html lang="en"
+  head
+    meta charset="UTF-8"/
+    meta name="viewport" content="width=device-width, initial-scale=1.0"/
+    meta http-equiv="X-UA-Compatible" content="ie=edge"/
+    title AllaBreve - Административная панель
+    = csrf_meta_tags
+    = stylesheet_link_tag    'admin', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'admin', 'data-turbolinks-track': 'reload'
+
+  body
+    .admin-panel
+      header.admin-panel__header
+      aside.admin-panel__side
+        nav.admin-panel__nav
+          li.admin-panel__nav-item
+            = link_to 'Статьи', admin_articles_path
+      main.admin-panel__main
+        .container
+          = yield

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+html lang="en"
+  head
+    meta charset="UTF-8"/
+    meta name="viewport" content="width=device-width, initial-scale=1.0"/
+    meta http-equiv="X-UA-Compatible" content="ie=edge"/
+    title AllaBreve
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+  body
+    .container
+      = yield
