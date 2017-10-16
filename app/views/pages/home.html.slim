@@ -1,0 +1,15 @@
+.row
+  .col-md-auto
+    h1 Это главная страница нашего прекрасного сайта
+.row
+  .col-md-12
+    h2 А это наши замечательные статьи
+  - @articles.each do |a|
+    .col-md-4
+      = link_to article_path(a) do
+        = image_tag a.preview_url
+        p
+          strong #{a.name}
+.row
+  .col-md-12
+    h3 А здесь может быть что-нибудь еще
