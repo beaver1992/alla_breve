@@ -1,0 +1,23 @@
+$mp-header-height: 80px;
+
+.main-page {
+  section {
+    height: 100vh;
+    padding-top: $mp-header-height;
+  }
+}
+
+.mp__header {
+  background-color: #fff;
+  border-bottom: 1px solid rgba(#eee, 0.75);
+  height: $mp-header-height;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+.mp__nav-item {
+  list-style: none;
+}

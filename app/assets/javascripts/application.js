@@ -16,6 +16,39 @@
 //= require popper
 //= require bootstrap-sprockets
 
-document.addEventListener("turbolinks:load", function() {
+function scrollNav() {
+    $('.mp__nav a').click(function (e) {
+        var href = $(e.target).attr('href');
+        //Toggle Class
+        $('li.active').removeClass('active');
+        $(this).parent('li').addClass('active');
+        //Animate
+        $('html, body').stop().animate({
+            scrollTop: $(href).offset().top
+        }, 400);
+    });
+    $('.scrollTop a').scrollTop();
+}
 
+window.onpopstate = function(e) {
+    if ($('.mp__nav').length > 0) {
+        var href = window.location.hash;
+        if (!href) href = '#' + $('section').first().attr('id');
+        $('li.active').removeClass('active');
+        $("a[href='" + href + "']").parent('li').addClass('active');
+        $('html, body').stop().animate({
+            scrollTop: $(href).offset().top
+        }, 400);
+    }
+}
+
+document.addEventListener('turbolinks:before-visit', function(e) {
+    if (e.data.url.split('#')[1] == 'about_school') {
+        e.preventDefault()
+        Turbolinks.visit('/')
+    }
+})
+
+document.addEventListener('turbolinks:load', function () {
+    scrollNav();
 })
