@@ -16,39 +16,68 @@
 //= require popper
 //= require bootstrap-sprockets
 
-function scrollNav() {
-    $('.mp__nav a').click(function (e) {
-        var href = $(e.target).attr('href');
-        //Toggle Class
-        $('li.active').removeClass('active');
-        $(this).parent('li').addClass('active');
-        //Animate
-        $('html, body').stop().animate({
-            scrollTop: $(href).offset().top
-        }, 400);
+var mutex = false;
+
+function scrollToEl(id) {
+    mutex = true
+    $('li.active').removeClass('active');
+    $("a[href='" + id + "']").parent('li').addClass('active');
+    var href = id
+    if (href == '#about_school') {
+        href = '/'
+        $('.mp__header').removeClass('mp__header_no-title');
+    } else {
+        $('.mp__header').addClass('mp__header_no-title');
+    }
+    history.pushState({}, id, href)
+    $('html, body').stop().animate({
+        scrollTop: $(id).offset().top
+    }, 1000, function () {
+        mutex = false
     });
     $('.scrollTop a').scrollTop();
 }
 
-window.onpopstate = function(e) {
+$(window).on('mousewheel', function (e, delta) {
+    if (!mutex) {
+        if (e.originalEvent.wheelDelta / 120 > 0) {
+            var target = $('li.active').prev('li')
+            if (target.length > 0) scrollToEl(target.find('a').attr('href'))
+        } else {
+            var target = $('li.active').next('li')
+            if (target.length > 0) scrollToEl(target.find('a').attr('href'))
+        }
+    } else {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+})
+
+window.onpopstate = function (e) {
+    e.preventDefault();
+    e.stopPropagation();
     if ($('.mp__nav').length > 0) {
-        var href = window.location.hash;
-        if (!href) href = '#' + $('section').first().attr('id');
-        $('li.active').removeClass('active');
-        $("a[href='" + href + "']").parent('li').addClass('active');
-        $('html, body').stop().animate({
-            scrollTop: $(href).offset().top
-        }, 400);
+        var id = window.location.hash;
+        if (!id) id = '#' + $('section').first().attr('id');
+        scrollToEl(id);
     }
 }
 
-document.addEventListener('turbolinks:before-visit', function(e) {
+document.addEventListener('turbolinks:before-visit', function (e) {
     if (e.data.url.split('#')[1] == 'about_school') {
         e.preventDefault()
+        e.stopPropagation()
         Turbolinks.visit('/')
     }
 })
 
 document.addEventListener('turbolinks:load', function () {
-    scrollNav();
+    if ($('.mp__nav').length > 0 && window.location.hash) scrollToEl(window.location.hash)
+
+    $('.mp__nav a').on('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var id = $(this).attr('href');
+        scrollToEl(id)
+    })
 })
