@@ -23,6 +23,7 @@ gem 'simple_form'
 gem 'slim-rails'
 gem 'therubyracer', platforms: :ruby
 gem 'trix'
+gem 'libv8'
 gem 'turbolinks'
 gem 'uglifier'
 
