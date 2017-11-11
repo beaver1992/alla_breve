@@ -194,6 +194,7 @@ DEPENDENCIES
   coffee-rails
   jbuilder
   jquery-rails
+  libv8
   listen
   normalize-rails
   pg
@@ -212,4 +213,4 @@ DEPENDENCIES
   web-console
 
 BUNDLED WITH
-   1.14.6
+   1.16.0.pre.3

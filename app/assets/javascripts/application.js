@@ -71,6 +71,13 @@ document.addEventListener('turbolinks:before-visit', function (e) {
     }
 })
 
+function initYmap(){
+    new ymaps.Map("ymap", {
+        center: [55.76, 37.64],
+        zoom: 7
+    });
+}
+
 document.addEventListener('turbolinks:load', function () {
     if ($('.mp__nav').length > 0 && window.location.hash) scrollToEl(window.location.hash)
 
@@ -80,4 +87,6 @@ document.addEventListener('turbolinks:load', function () {
         var id = $(this).attr('href');
         scrollToEl(id)
     })
+
+    ymaps.ready(initYmap);
 })

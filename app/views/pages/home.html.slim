@@ -27,28 +27,65 @@
 
       section#about_platform
         .row.h-100
-          .col-12.d-flex.justify-content-center.align-items-center.h-100
-            h2 style='font-size: 148px;' Привет друзья
+          .col-12.d-flex.justify-content-center.align-items-center.h-100.flex-column
+            .row
+              .col-4.d-flex.justify-content-between.align-items-center.flex-column
+                = image_tag '1.png', size: '50x50', class: 'rounded-circle'
+                p 7 курсов
+              .col-4.d-flex.justify-content-between.align-items-center.flex-column
+                = image_tag '2.jpg', size: '50x50', class: 'rounded-circle'
+                p 5 тренингов
+              .col-4.d-flex.justify-content-between.align-items-center.flex-column
+                = image_tag '3.jpeg', size: '50x50', class: 'rounded-circle'
+                p 10 подкастов
+
+            .row
+              .col-7
+                .justify-content-center.align-items-center style='height: 300px; background: #f00;'
+                  ' конвертик с картинкой
+              .col-5
+                h3 Посмотрите видео о нашей платформе
+                p За 2 минуты вы узнаете ценност нашей платформы и как с ней взаимодействовать
 
       section#for_what
         .row.h-100
-          .col-12.d-flex.justify-content-center.align-items-center.h-100
-            h2 style='font-size: 148px;' Привет друзья
+          .col-12
+            .row.d-flex.justify-content-center.align-items-center.h-100
+              .col-5
+                .justify-content-center.align-items-center style='height: 300px; background: #0f0;'
+                  ' Видео оченика
+              .col-7
+                h3 Посмотрите видео нашего ученика
+                p Результаты учеников после пройденного курса
 
       section#reviews
         .row.h-100
-          .col-12.d-flex.justify-content-center.align-items-center.h-100
-            h2 style='font-size: 148px;' Привет друзья
+          .col-12
+            .row.d-flex.justify-content-center.align-items-center.h-100
+              .col-4.d-flex.justify-content-between.align-items-center.flex-column
+                = image_tag '1.png', size: '200x200', class: 'rounded-circle'
+                h3 Серега
+                p Это самая лучшая платформа на свете
+              .col-4.d-flex.justify-content-between.align-items-center.flex-column
+                = image_tag '2.jpg', size: '200x200', class: 'rounded-circle'
+                h3 Серега
+                p Это самая лучшая платформа на светегов
+              .col-4.d-flex.justify-content-between.align-items-center.flex-column
+                = image_tag '3.jpeg', size: '200x200', class: 'rounded-circle'
+                h3 Серега
+                p Это самая лучшая платформа на светестов
 
       section#contacts
         .row.h-100
-          .col-12.d-flex.justify-content-center.align-items-center.h-100
-            .mp__block.mp__block_contacts
-              .row
-                .col-6
-                  #ymap.justify-content-center.align-items-center style='height: 300px;'
-                    ' ЯНДЕКС КАРТА
-                .col-6
-                  h3 Тренинги
-                  p Мы находимся в самом прекрасном уголке нашей страны
-                  p Форма
+          .col-12
+            .row.d-flex.justify-content-center.align-items-center.h-100
+              .col-7
+                #ymap style='height: 300px;'
+              .col-5
+                h3 Тренинги
+                p Мы находимся в самом прекрасном уголке нашей страны
+                = simple_form_for :request do |f|
+                  = f.input :fname, label: false, placeholder: 'Имя', requried: true
+                  = f.input :lname, label: false, placeholder: 'Фамилия', requried: true
+
+                  = f.submit 'Отправить заявку', class: 'btn btn-primary'
