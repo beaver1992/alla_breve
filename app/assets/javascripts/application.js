@@ -25,9 +25,9 @@ function scrollToEl(id) {
     var href = id
     if (href == '#about_school') {
         href = '/'
-        $('.mp__header').removeClass('mp__header_no-title');
+        $('.main-page').removeClass('main-page_no-title');
     } else {
-        $('.mp__header').addClass('mp__header_no-title');
+        $('.main-page').addClass('main-page_no-title');
     }
     history.pushState({}, id, href)
     $('html, body').stop().animate({

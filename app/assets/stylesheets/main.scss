@@ -17,10 +17,6 @@ $mp-header-height: 80px;
   transition: all .25s ease;
   width: 100%;
   z-index: 2;
-
-  &_no-title {
-    transform: translateY(-44px);
-  }
 }
 
 .mp__nav-item {
@@ -29,4 +25,23 @@ $mp-header-height: 80px;
   &.active a {
     text-decoration: underline;
   }
+}
+
+.main-page_no-title {
+  section {
+    padding-top: 36px;
+  }
+
+  .mp__header {
+    transform: translateY(-44px);
+  }
+}
+
+.mp__background {
+  background-image: asset_url('bp.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  height: 75%;
+  width: 100%;
 }
